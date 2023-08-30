@@ -31,12 +31,16 @@ public class Clinic {
 	private String clinicZip;
 	private String clinicPhone;
 	
+	// Many-to-many relationship between Clinic and Patient entities.
+	
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "clinic_patient", joinColumns = @JoinColumn(name = "clinic_id"),
 		inverseJoinColumns = @JoinColumn(name = "patient_id"))
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Set<Patient> patients = new HashSet<>();
+	
+	// One-to-many relationship between Clinic and Employee entities.
 	
 	@OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, orphanRemoval = true)
 	@EqualsAndHashCode.Exclude

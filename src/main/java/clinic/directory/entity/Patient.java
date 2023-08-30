@@ -26,6 +26,8 @@ public class Patient {
 	private String patientLastName;
 	private String patientEmail;
 	
+	// Many-to-many relationship between Patient and Clinic entities.
+	
 	@ManyToMany(mappedBy = "patients", cascade = CascadeType.PERSIST)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude

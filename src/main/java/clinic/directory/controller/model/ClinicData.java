@@ -9,6 +9,10 @@ import clinic.directory.entity.Patient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data model representing clinic information, including its patients and employees.
+ */
+
 @Data
 @NoArgsConstructor
 public class ClinicData {
@@ -26,6 +30,8 @@ public class ClinicData {
 	private Set<ClinicPatient> patients = new HashSet<>();	
 	private Set<ClinicEmployee> employees = new HashSet<>();
 	
+	// Constructor that initializes the ClinicData instance based on a Clinic entity.
+	
 	public ClinicData(Clinic clinic) {
 		clinicId = clinic.getClinicId();
 		clinicName = clinic.getClinicName();
@@ -35,14 +41,20 @@ public class ClinicData {
 		clinicZip = clinic.getClinicZip();
 		clinicPhone = clinic.getClinicPhone();
 		
+		// Mapping Patients from Clinic entity to ClinicPatient objects.
+		
 		for(Patient patient : clinic.getPatients()) {
 			patients.add(new ClinicPatient(patient));
 		}
+		
+		 // Mapping Employees from Clinic entity to ClinicEmployee objects.
 		
 		for(Employee employee : clinic.getEmployees()){
 			employees.add(new ClinicEmployee(employee));
 		}
 	}
+	// Inner class representing patient information within ClinicData.
+	
 	@Data
 	@NoArgsConstructor
 	public static class ClinicPatient {
@@ -50,6 +62,8 @@ public class ClinicData {
 		private String patientFirstName;
 		private String patientLastName;
 		private String patientEmail;
+		
+		// Constructor that initializes ClinicPatient based on a Patient entity.
 		
 		public ClinicPatient(Patient patient) {
 			patientId = patient.getPatientId();
@@ -59,6 +73,8 @@ public class ClinicData {
 		}
 	}
 	
+	// Inner class representing employee information within ClinicData.
+	
 	@Data
 	@NoArgsConstructor
 	public static class ClinicEmployee {
@@ -67,6 +83,8 @@ public class ClinicData {
 		private String employeeLastName;
 		private String employeePhone;
 		private String employeeJobTitle;
+		
+		// Constructor that initializes ClinicEmployee based on an Employee entity.
 		
 		public ClinicEmployee(Employee employee) {
 			employeeId = employee.getEmployeeId();

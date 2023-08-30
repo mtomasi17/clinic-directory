@@ -24,7 +24,9 @@ public class Employee {
 	private String employeePhone;
 	private String employeeJobTitle;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	 // Many-to-one relationship between Employee and Clinic entities.
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "clinic_id")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
